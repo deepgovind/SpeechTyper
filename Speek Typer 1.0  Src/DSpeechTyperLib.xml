@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<project basedir="." default="all" name="Sphinx-4">
+ 
+    <property name="version" value="1_2_0"/>
+    <property name="demo_src_dir" value="src/DSpeechTyper"/>
+    <property name="build_dir" value="ClassDir"/>
+    <property name="demo_classes_dir" value="${build_dir}"/>
+    <property name="lib_dir" value="lib"/>
+    <property name="bin_dir" value="lib"/>
+    <property name="deploy_dir" value="deploy"/>
+    
+     <property name="demo_src_dir_en" value="src/DSpeechTyperEn"/>
+    
+    
+    <path id="libs">
+        <pathelement path="${demo_classes_dir}"/>
+        <pathelement location="${lib_dir}/sphinx4.jar"/>
+        <pathelement location="${lib_dir}/jsapi.jar"/>
+        <pathelement location="${lib_dir}/tags.jar"/>
+        <pathelement location="${lib_dir}/js.jar"/>
+        <pathelement location="${lib_dir}/junit-4.4.jar"/>
+    </path>
+ 
+    <target name="DSpeechTyperPKG">
+        <mkdir dir="${demo_classes_dir}"/>
+        <javac debug="true"
+               listfiles="true"
+               deprecation="true"
+               includeAntRuntime="false"
+               srcdir="${demo_src_dir}"
+               includes="**"
+               destdir="${demo_classes_dir}">
+            <classpath refid="libs"/>
+        </javac>
+        <copy file="${demo_src_dir}/DSpeechTyperHi.trigram.lm"
+              todir="${demo_classes_dir}/DSpeechTyper"/>
+        <copy file="${demo_src_dir}/DSpeechTyper.config.xml"
+              todir="${demo_classes_dir}/DSpeechTyper"/>
+	 
+        <mkdir dir="${bin_dir}"/>
+        <jar destfile="${bin_dir}/DSpeechTyper.jar"
+             manifest="${demo_src_dir}/DSpeechTyper.Manifest"
+             basedir="${demo_classes_dir}"
+             includes="**"
+             compress="true"/>
+       
+    </target>
+	
+
+    
+</project>

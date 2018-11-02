@@ -1,0 +1,2 @@
+Main-Class: DSpeechTyper.DSpeechTyper
+Class-Path: sphinx4.jar jsapi.jar WSJ_8gau_13dCep_16k_40mel_130Hz_6800Hz.jar
